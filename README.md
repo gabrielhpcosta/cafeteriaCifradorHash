@@ -4,57 +4,60 @@ Site da cafeteria M&C com uma ferramenta para cifrar e decifrar mensagens com tr
 
 ## Como executar
 
-### Pré-requisitos
+Passo a passo para Windows.
 
-- [Python 3](https://www.python.org/downloads/) (3.9 ou mais novo). No Windows, marque a opção **Add Python to PATH** na instalação.
-- [Git](https://git-scm.com/downloads) (ou baixe o projeto pelo botão **Code > Download ZIP** no GitHub).
+### 1. Instalar o Python (só na primeira vez)
 
-### Passo a passo
+1. Baixe o Python em https://www.python.org/downloads/ (botão amarelo **Download Python**).
+2. Abra o instalador e, **antes de clicar em Install Now**, marque a caixinha **Add python.exe to PATH** lá embaixo.
+3. Clique em **Install Now** e espere terminar.
 
-1. Baixe o projeto e entre na pasta:
+### 2. Baixar o projeto
 
-   ```
-   git clone https://github.com/gabrielhpcosta/cafeteriaCifradorHash.git
-   cd cafeteriaCifradorHash
-   ```
+1. Entre no GitHub com a sua conta (você precisa ter aceitado o convite para o repositório).
+2. Nesta página, clique no botão verde **Code** e depois em **Download ZIP**.
+3. Vá na pasta **Downloads**, clique com o botão direito no arquivo `cafeteriaCifradorHash-main.zip` e escolha **Extrair tudo...** > **Extrair**.
 
-2. (Opcional, mas recomendado) Crie e ative um ambiente virtual:
+### 3. Abrir o terminal na pasta do projeto
 
-   Windows (PowerShell):
-   ```
-   python -m venv .venv
-   .venv\Scripts\Activate.ps1
-   ```
+1. Abra a pasta extraída até ver os arquivos `app.py` e `requirements.txt`.
+2. Clique na barra de endereço lá em cima (onde aparece o caminho da pasta), apague o que estiver escrito, digite `cmd` e aperte **Enter**. Vai abrir uma janela preta (o Prompt de Comando) já nessa pasta.
 
-   Linux / macOS:
-   ```
-   python3 -m venv .venv
-   source .venv/bin/activate
-   ```
+### 4. Instalar o Flask (só na primeira vez)
 
-3. Instale as dependências (só o Flask):
-
-   ```
-   pip install -r requirements.txt
-   ```
-
-4. Inicie o servidor:
-
-   ```
-   python app.py
-   ```
-
-5. Abra http://127.0.0.1:5000 no navegador. A primeira tela é o login: clique em **Cadastrar** para criar um usuário e depois em **Entrar**. Depois de entrar, o Cifrador fica no menu do site.
-
-Para parar o servidor, aperte `Ctrl + C` no terminal.
-
-> Abrir o `index.html` direto no navegador não funciona para o Cifrador: as páginas dele são geradas pelo Flask, então o site precisa ser aberto pelo endereço acima.
-
-### Testes
+Na janela preta, digite (ou copie e cole) e aperte **Enter**:
 
 ```
-python -m unittest
+pip install -r requirements.txt
 ```
+
+Espere aparecer `Successfully installed`.
+
+### 5. Iniciar o site
+
+Na mesma janela, digite e aperte **Enter**:
+
+```
+python app.py
+```
+
+Quando aparecer `Running on http://127.0.0.1:5000`, abra o navegador e entre em **http://127.0.0.1:5000**.
+
+**Não feche a janela preta** enquanto estiver usando o site. Para desligar, feche a janela ou aperte `Ctrl + C` nela.
+
+Da próxima vez, é só fazer os passos 3 e 5.
+
+### Entrando no site
+
+A primeira tela é o login. Digite um usuário e uma senha, clique em **Cadastrar** e depois em **Entrar**. O Cifrador fica no menu do site.
+
+> Abrir o `index.html` com dois cliques não funciona: o site precisa ser aberto pelo endereço http://127.0.0.1:5000 com a janela preta aberta.
+
+### Deu erro?
+
+- **`'python' não é reconhecido` ou abriu a Microsoft Store:** o Python foi instalado sem marcar **Add python.exe to PATH**. Rode o instalador de novo, escolha **Modify** > **Next** e marque **Add Python to environment variables**. Depois feche e abra a janela preta de novo.
+- **`'pip' não é reconhecido`:** use `python -m pip install -r requirements.txt`.
+- **`No such file or directory: 'requirements.txt'`:** a janela preta não foi aberta na pasta certa. Volte ao passo 3 e confira que a pasta tem o `app.py`.
 
 ## Como usar
 
