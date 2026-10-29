@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+
+{% block titulo %}Aprenda{% endblock %}
+
+{% block conteudo %}
+<span class="mini-title">APRENDA</span>
+<h1>Aprenda sobre criptografia</h1>
+
+<p>
+    Criptografia é o uso de algoritmos matemáticos para transformar uma mensagem em um texto
+    que ninguém consegue ler sem saber a chave. A mensagem original é chamada de <b>texto claro</b>
+    e a mensagem embaralhada é o <b>texto cifrado</b>. Cifrar é transformar o texto claro em
+    cifrado, e decifrar é o caminho de volta.
+</p>
+<p>
+    Hoje ela está em quase tudo que usamos na internet: nas conversas do WhatsApp, no acesso ao
+    banco pelo celular, nas compras online e em qualquer site que começa com https.
+</p>
+
+<h2>Tipos de criptografia</h2>
+<ul>
+    <li><b>Simétrica:</b> a mesma chave cifra e decifra. Os três métodos dessa ferramenta são desse tipo.</li>
+    <li><b>Assimétrica:</b> usa duas chaves. Uma chave pública cifra e uma chave privada decifra. É usada no https.</li>
+    <li><b>Hash:</b> gera um resumo da mensagem que não pode ser desfeito. É usado para guardar senhas.</li>
+</ul>
+
+<h2 id="cesar">Cifra de César</h2>
+<p>
+    É uma das cifras mais antigas que se conhece. Júlio César usava para mandar mensagens aos
+    seus generais. Cada letra é trocada pela letra que está algumas posições à frente no alfabeto.
+    O número de posições é a chave. Com a chave 3, o A vira D, o B vira E, e assim por diante.
+    Quando chega no fim do alfabeto, volta para o começo: o X vira A.
+</p>
+<table class="alfabeto">
+    <tr><th>Original</th><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td>...</td><td>W</td><td>X</td><td>Y</td><td>Z</td></tr>
+    <tr><th>Chave 3</th><td>D</td><td>E</td><td>F</td><td>G</td><td>H</td><td>I</td><td>...</td><td>Z</td><td>A</td><td>B</td><td>C</td></tr>
+</table>
+<p>
+    O problema é que só existem 25 chaves possíveis. Dá para testar todas em poucos minutos, até
+    sem computador.
+</p>
+
+<h2 id="substituicao">Substituição</h2>
+<p>
+    Na substituição cada letra do alfabeto é trocada por outra, seguindo uma tabela. Nessa
+    ferramenta a tabela é montada a partir de uma palavra-chave: primeiro vêm as letras da
+    palavra (sem repetir) e depois o resto do alfabeto de trás para frente.
+</p>
+<p>Por exemplo, com a palavra-chave UNIP a tabela fica assim:</p>
+<table class="alfabeto">
+    <tr><th>Original</th><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td>G</td><td>H</td><td>I</td><td>J</td><td>K</td><td>L</td><td>M</td></tr>
+    <tr><th>Cifrada</th><td>U</td><td>N</td><td>I</td><td>P</td><td>Z</td><td>Y</td><td>X</td><td>W</td><td>V</td><td>T</td><td>S</td><td>R</td><td>Q</td></tr>
+    <tr><th>Original</th><td>N</td><td>O</td><td>P</td><td>Q</td><td>R</td><td>S</td><td>T</td><td>U</td><td>V</td><td>W</td><td>X</td><td>Y</td><td>Z</td></tr>
+    <tr><th>Cifrada</th><td>O</td><td>M</td><td>L</td><td>K</td><td>J</td><td>H</td><td>G</td><td>F</td><td>E</td><td>D</td><td>C</td><td>B</td><td>A</td></tr>
+</table>
+<p>
+    Ela é bem mais difícil de quebrar na tentativa e erro do que a de César, mas pode ser
+    quebrada contando quais letras aparecem mais no texto. Em português as letras mais comuns
+    são A, E e O, então a letra que mais aparece no texto cifrado provavelmente é uma delas.
+</p>
+
+<h2 id="transposicao">Transposição</h2>
+<p>
+    Na transposição as letras não mudam, só a ordem delas. Aqui foi usada a transposição por
+    colunas: a mensagem é escrita em linhas embaixo da palavra-chave e depois as colunas são
+    lidas na ordem alfabética das letras da chave.
+</p>
+<p>Exemplo com a mensagem ATAQUE AO AMANHECER e a chave CHAVE (o _ representa espaço):</p>
+<table class="grade">
+    <tr><th>C</th><th>H</th><th>A</th><th>V</th><th>E</th></tr>
+    <tr><td>A</td><td>T</td><td>A</td><td>Q</td><td>U</td></tr>
+    <tr><td>E</td><td>_</td><td>A</td><td>O</td><td>_</td></tr>
+    <tr><td>A</td><td>M</td><td>A</td><td>N</td><td>H</td></tr>
+    <tr><td>E</td><td>C</td><td>E</td><td>R</td><td></td></tr>
+</table>
+<p>
+    A ordem alfabética da chave é A, C, E, H, V. Lendo as colunas nessa ordem fica:
+    AAAE + AEAE + U_H + T_MC + QONR = <code>AAAEAEAEU HT MCQONR</code>.
+</p>
+<p>
+    Como as letras continuam as mesmas, quem olha o texto cifrado consegue perceber que é uma
+    transposição. Por isso antigamente ela era usada junto com a substituição.
+</p>
+
+<h2>Exemplos práticos</h2>
+<p>Clique em "testar" para abrir o exemplo na ferramenta.</p>
+<table class="exemplos">
+    <tr>
+        <th>Método</th>
+        <th>Chave</th>
+        <th>Texto claro</th>
+        <th>Texto cifrado</th>
+        <th></th>
+    </tr>
+    <tr>
+        <td>César</td>
+        <td>3</td>
+        <td>Encontro na biblioteca as 19h</td>
+        <td>Hqfrqwur qd eleolrwhfd dv 19k</td>
+        <td><a href="{{ url_for('cifrador', metodo='cesar', chave='3', mensagem='Encontro na biblioteca as 19h') }}">testar</a></td>
+    </tr>
+    <tr>
+        <td>César</td>
+        <td>13</td>
+        <td>Nao clique em links estranhos</td>
+        <td>Anb pyvdhr rz yvaxf rfgenaubf</td>
+        <td><a href="{{ url_for('cifrador', metodo='cesar', chave='13', mensagem='Anb pyvdhr rz yvaxf rfgenaubf') }}">testar</a></td>
+    </tr>
+    <tr>
+        <td>Substituição</td>
+        <td>UNIP</td>
+        <td>A senha do wifi e cafe123</td>
+        <td>U hzowu pm dvyv z iuyz123</td>
+        <td><a href="{{ url_for('cifrador', metodo='substituicao', chave='UNIP', mensagem='A senha do wifi e cafe123') }}">testar</a></td>
+    </tr>
+    <tr>
+        <td>Transposição</td>
+        <td>CHAVE</td>
+        <td>ATAQUE AO AMANHECER</td>
+        <td>AAAEAEAEU HT MCQONR</td>
+        <td><a href="{{ url_for('cifrador', metodo='transposicao', chave='CHAVE', mensagem='AAAEAEAEU HT MCQONR') }}">testar</a></td>
+    </tr>
+</table>
+<p class="obs">Nos exemplos que abrem com o texto cifrado, clique em Decifrar para ver a mensagem original.</p>
+
+<h2>Segurança no dia a dia</h2>
+<p>
+    As cifras clássicas são fáceis de quebrar hoje, mas a ideia por trás delas continua a mesma
+    nos sistemas atuais. Mesmo com a criptografia moderna, a maior parte dos ataques acontece
+    por descuido das pessoas. Alguns cuidados simples:
+</p>
+<ul>
+    <li>Use senhas longas e diferentes em cada site. Um gerenciador de senhas ajuda a lembrar.</li>
+    <li>Ative a verificação em duas etapas no e-mail, nas redes sociais e no WhatsApp.</li>
+    <li>Desconfie de mensagens com links pedindo dados, mesmo que pareçam ser do banco ou de um amigo.</li>
+    <li>Antes de digitar senha em um site, confira se o endereço está certo e começa com https.</li>
+    <li>Evite acessar banco ou fazer compras em Wi-Fi público.</li>
+    <li>Mantenha o celular e o computador atualizados, porque as atualizações corrigem falhas de segurança.</li>
+</ul>
+{% endblock %}

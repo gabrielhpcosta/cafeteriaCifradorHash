@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M&C - {% block titulo %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <link rel="stylesheet" href="/style3.css">
+    <link rel="stylesheet" href="/cifrador.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar section-content">
+            <a href="/inicio3.html" class="nav-logo">
+                <img src="/logo.png" class="logo-img">
+                <h2 class="logo-text">M&C.</h2>
+            </a>
+            <ul class="nav-menu">
+                <button id="menu-close-button" class="fas fa-times"></button>
+                <li class="nav-item">
+                    <a href="/inicio3.html" class="nav-link">Início</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/cifrador" class="nav-link">Cifrador</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/aprenda" class="nav-link">Aprenda</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/index.html" class="nav-link" id="link-login">Entrar</a>
+                </li>
+            </ul>
+            <button id="menu-open-button" class="fas fa-bars"></button>
+        </nav>
+    </header>
+
+    <main class="pagina">
+        {% block conteudo %}{% endblock %}
+    </main>
+
+    <footer class="rodape">
+        <p>M&C. Madeira e Cobre - APS Ciência da Computação - UNIP Campinas - 2026</p>
+    </footer>
+
+    <script src="/cifrador.js"></script>
+</body>
+</html>

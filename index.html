@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M&amp;C</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <main class="card">
+        <div class="cabecalho">
+            <div class="icone">☕</div>
+            <h1>M&amp;C</h1>
+            <p class="subtitulo">Cadastro e login com senha protegida por hash</p>
+        </div>
+
+        <label for="usuario">Usuário</label>
+        <input type="text" id="usuario" placeholder="Digite seu usuário" autocomplete="off">
+
+        <label for="senha">Senha</label>
+        <div class="campo-senha">
+            <input type="password" id="senha" placeholder="Digite sua senha">
+            <button type="button" class="ver-senha" onclick="alternarSenha()">Mostrar</button>
+        </div>
+
+        <div class="botoes">
+            <button class="secundario" onclick="cadastrar()">Cadastrar</button>
+            <button class="principal" onclick="entrar()">Entrar</button>
+        </div>
+
+        <p id="mensagem"></p>
+
+        <div id="resultado"></div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

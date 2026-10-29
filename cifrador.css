@@ -1,0 +1,247 @@
+body {
+    background: var(--primary-color);
+    color: var(--white-color);
+}
+
+.pagina {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 140px 20px 60px;
+    line-height: 1.7;
+}
+
+.pagina .mini-title {
+    color: var(--secondary-color);
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 3px;
+}
+
+.pagina h1 {
+    font-size: var(--font-size-xxl);
+    color: var(--secondary-color);
+    font-weight: 600;
+    margin: 5px 0 20px;
+}
+
+.pagina h2 {
+    font-size: var(--font-size-l);
+    color: var(--secondary-color);
+    font-weight: 500;
+    margin: 45px 0 15px;
+}
+
+.pagina p {
+    color: #cfcfcf;
+    margin-bottom: 15px;
+}
+
+.pagina b {
+    color: var(--white-color);
+}
+
+.pagina a {
+    color: var(--secondary-color);
+}
+
+.pagina a:hover {
+    text-decoration: underline;
+}
+
+.pagina ol,
+.pagina ul {
+    padding-left: 25px;
+    margin-bottom: 15px;
+    color: #cfcfcf;
+}
+
+.pagina ol {
+    list-style: decimal;
+}
+
+.pagina ul {
+    list-style: disc;
+}
+
+.pagina li {
+    margin-bottom: 6px;
+}
+
+.obs {
+    font-size: var(--font-size-s);
+    color: #999 !important;
+}
+
+/* formulário */
+
+.ferramenta {
+    background: #1b0f09;
+    border: 1px solid #3a2418;
+    border-radius: 20px;
+    padding: 30px;
+    margin-top: 30px;
+}
+
+.ferramenta label {
+    display: block;
+    font-weight: 500;
+    margin: 15px 0 6px;
+    color: var(--white-color);
+}
+
+.pagina textarea,
+.pagina input,
+.pagina select {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: var(--font-size-n);
+    color: var(--white-color);
+    background: var(--primary-color);
+    border: 1px solid #4a2e1f;
+    border-radius: var(--border-radius-s);
+    outline: none;
+}
+
+.pagina textarea {
+    font-family: "Courier New", monospace;
+    resize: vertical;
+}
+
+.pagina textarea:focus,
+.pagina input:focus,
+.pagina select:focus {
+    border-color: var(--secondary-color);
+}
+
+.campos {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.campos > div {
+    flex: 1;
+}
+
+.campos small {
+    color: #999;
+    font-size: 13px;
+}
+
+.pagina button {
+    padding: 12px 32px;
+    margin: 10px 10px 0 0;
+    font-size: var(--font-size-n);
+    font-weight: 500;
+    color: var(--primary-color);
+    background: var(--secondary-color);
+    border: 2px solid var(--secondary-color);
+    border-radius: var(--border-radius-m);
+    transition: 0.3s ease;
+}
+
+.pagina button:hover {
+    background: transparent;
+    color: var(--white-color);
+    border-color: var(--white-color);
+}
+
+.pagina button.outro {
+    background: transparent;
+    color: var(--white-color);
+    border-color: var(--white-color);
+}
+
+.pagina button.outro:hover {
+    background: var(--secondary-color);
+    border-color: var(--secondary-color);
+    color: var(--primary-color);
+}
+
+.erro {
+    color: #ffb4a1 !important;
+    background: rgba(242, 68, 5, 0.15);
+    border: 1px solid var(--secondary-color);
+    border-radius: var(--border-radius-s);
+    padding: 12px 15px;
+    margin-top: 25px;
+}
+
+.saida textarea {
+    background: #1b0f09;
+    border-color: var(--secondary-color);
+}
+
+/* tabelas da página aprenda */
+
+.pagina table {
+    border-collapse: collapse;
+    margin: 15px 0 20px;
+}
+
+.pagina th,
+.pagina td {
+    border: 1px solid #3a2418;
+    padding: 8px 12px;
+    color: #e6e0d6;
+}
+
+.pagina th {
+    background: #2a160c;
+    color: var(--secondary-color);
+    font-weight: 500;
+}
+
+.alfabeto td,
+.grade td,
+.grade th {
+    text-align: center;
+    font-family: "Courier New", monospace;
+    width: 32px;
+}
+
+.exemplos {
+    width: 100%;
+}
+
+.exemplos td:nth-child(3),
+.exemplos td:nth-child(4) {
+    font-family: "Courier New", monospace;
+}
+
+.pagina code {
+    font-family: "Courier New", monospace;
+    background: #2a160c;
+    color: var(--secondary-color);
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.rodape {
+    text-align: center;
+    padding: 25px 20px;
+    border-top: 1px solid #2a160c;
+    color: #888;
+    font-size: var(--font-size-s);
+}
+
+@media screen and (max-width: 700px) {
+    .pagina {
+        padding-top: 110px;
+    }
+
+    .campos {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .ferramenta {
+        padding: 20px;
+    }
+
+    .exemplos,
+    .alfabeto {
+        display: block;
+        overflow-x: auto;
+    }
+}

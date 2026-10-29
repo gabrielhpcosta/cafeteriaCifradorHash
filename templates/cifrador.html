@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block titulo %}Ferramenta{% endblock %}
+
+{% block conteudo %}
+<span class="mini-title">CIFRADOR</span>
+<h1>Criptografia clássica</h1>
+<p>
+    Com essa ferramenta você pode cifrar e decifrar mensagens usando três métodos antigos de
+    criptografia: a Cifra de César, a Substituição e a Transposição. Ela foi feita para estudo,
+    então não use para proteger informações de verdade. Para entender como cada método funciona,
+    veja a página <a href="/aprenda">Aprenda</a>.
+</p>
+
+<h2>Como usar</h2>
+<ol>
+    <li>Digite ou cole a mensagem no campo abaixo.</li>
+    <li>Escolha o método e digite a chave.</li>
+    <li>Clique em <b>Cifrar</b> para esconder a mensagem ou em <b>Decifrar</b> para voltar ao texto original.</li>
+    <li>Para decifrar, use o mesmo método e a mesma chave que foram usados para cifrar.</li>
+</ol>
+<p class="obs">Acentos e cedilha são trocados pela letra sem acento (ex: "ação" vira "acao").</p>
+
+<form method="post" class="ferramenta">
+    <label for="mensagem">Mensagem</label>
+    <textarea id="mensagem" name="mensagem" rows="6" maxlength="2000">{{ dados.mensagem }}</textarea>
+
+    <div class="campos">
+        <div>
+            <label for="metodo">Método</label>
+            <select id="metodo" name="metodo">
+                {% for valor, nome in metodos.items() %}
+                <option value="{{ valor }}" {% if dados.metodo == valor %}selected{% endif %}>{{ nome }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <label for="chave" id="rotulo-chave">Chave</label>
+            <input type="text" id="chave" name="chave" value="{{ dados.chave }}">
+            <small id="dica-chave"></small>
+        </div>
+    </div>
+
+    <button type="submit" name="acao" value="cifrar">Cifrar</button>
+    <button type="submit" name="acao" value="decifrar" class="outro">Decifrar</button>
+</form>
+
+{% if erro %}
+<p class="erro">{{ erro }}</p>
+{% endif %}
+
+{% if resultado is not none %}
+<div class="saida">
+    <h2>Resultado ({{ "cifrado" if acao == "cifrar" else "decifrado" }})</h2>
+    <textarea id="texto-resultado" rows="6" readonly>{{ resultado }}</textarea>
+    <button type="button" id="copiar">Copiar</button>
+    <button type="button" id="usar" class="outro">Usar como mensagem</button>
+</div>
+{% endif %}
+{% endblock %}
