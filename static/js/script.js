@@ -19,6 +19,8 @@ const PAGINA_INICIAL = "inicio3.html";
 
 /* ---------- utilidades ---------- */
 
+// O salt e o hash são bytes; essas duas funções convertem para texto hexadecimal
+// (para salvar no localStorage) e de volta para bytes (para refazer o hash no login)
 function bytesParaHex(bytes) {
     return Array.from(new Uint8Array(bytes))
         .map(b => b.toString(16).padStart(2, "0"))
@@ -49,6 +51,10 @@ function normalizarUsuario(usuario) {
 
 /* ---------- criptografia ---------- */
 
+// Gera o hash da senha: transforma a senha em chave e aplica o PBKDF2, que
+// mistura senha + salt com SHA-256 várias vezes (as iterações deixam lento de
+// propósito, para dificultar quem tentar adivinhar senhas na força bruta).
+// Resultado: 256 bits (32 bytes) em hexadecimal. Mesma senha + mesmo salt = mesmo hash.
 async function derivarHash(senha, salt, iteracoes) {
     const material = await crypto.subtle.importKey(
         "raw",
@@ -67,6 +73,8 @@ async function derivarHash(senha, salt, iteracoes) {
 
 /* ---------- armazenamento ---------- */
 
+// "Banco de dados" do site: um objeto no localStorage no formato
+// { usuario: { salt, hash, iteracoes, algoritmo } } — a senha nunca é salva
 function lerUsuarios() {
     try {
         return JSON.parse(localStorage.getItem(CHAVE_USUARIOS)) || {};
@@ -169,6 +177,8 @@ async function cadastrar() {
     mostrarMensagem("Gerando hash da senha...", "carregando");
 
     try {
+        // Cada usuário ganha um salt aleatório próprio, então duas pessoas com a
+        // mesma senha ficam com hashes diferentes. Depois salva só salt + hash.
         const salt = crypto.getRandomValues(new Uint8Array(TAM_SALT));
         const hash = await derivarHash(senha, salt, ITERACOES);
 
@@ -217,6 +227,8 @@ async function entrar() {
             return;
         }
 
+        // Verificação: refaz o hash da senha digitada usando o salt e as iterações
+        // salvos no cadastro. Se a senha for a mesma, o hash sai igual ao armazenado.
         const registro = usuarios[usuario];
         const hashCalculado = await derivarHash(
             senha,
@@ -226,6 +238,7 @@ async function entrar() {
 
         mostrarResultado(registro.salt, registro.hash, hashCalculado);
 
+        // Hashes iguais = senha certa: guarda a sessão (dura até fechar a aba)
         if (compararSeguro(registro.hash, hashCalculado)) {
             sessionStorage.setItem(
                 CHAVE_SESSAO,
