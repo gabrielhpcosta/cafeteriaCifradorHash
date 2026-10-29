@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 
 from cifras import processar
 
-app = Flask(__name__, static_folder=".", static_url_path="")
+app = Flask(__name__, static_folder="static", static_url_path="")
 
 METODOS = {
     "cesar": "Cifra de César",

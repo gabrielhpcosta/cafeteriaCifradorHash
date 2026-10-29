@@ -82,10 +82,18 @@ A explicação de cada método está na página **Aprenda** do site.
 
 ## Arquivos
 
-- `app.py`: servidor Flask (login, site e páginas do cifrador)
-- `cifras.py`: os três métodos e a validação da entrada
-- `test_cifras.py`: testes
-- `templates/`: páginas do Cifrador e do Aprenda
-- `cifrador.css` e `cifrador.js`: estilo e script das páginas do cifrador
-- `index.html`, `login.css`, `script.js`: tela de login
-- `inicio3.html`, `style3.css`, `script2.js`: site da cafeteria
+```
+cafeteriaCifradorHash/
+├── app.py              servidor Flask (login, site e páginas do cifrador)
+├── cifras.py           os três métodos e a validação da entrada
+├── test_cifras.py      testes
+├── requirements.txt    dependências (Flask)
+├── templates/          páginas do Cifrador e do Aprenda (base, cifrador, aprenda)
+└── static/
+    ├── index.html      tela de login
+    ├── inicio3.html    site da cafeteria
+    ├── css/            login.css, style3.css (site), cifrador.css
+    ├── js/             script.js (login), script2.js (site), cifrador.js
+    ├── img/            logos e fotos do site
+    └── docs/           cardápio em PDF
+```
